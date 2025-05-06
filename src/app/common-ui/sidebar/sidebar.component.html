@@ -1,6 +1,6 @@
 <img src="/assets/svg/logo-small.svg" alt="Tik-Talk" class="ml16 mb20" />
 
-<nav>
+<nav class="mb20">
   <ul class="main-menu-list">
     @for (item of menuItems; track $index) {
     <li>
@@ -12,3 +12,29 @@
     }
   </ul>
 </nav>
+
+<div class="sidebar-card">
+  <p class="medium-text">Подписчики</p>
+  <div class="sidebar-card__subscribers">
+    @for (profile of subscribers$ | async; track $index) {
+    <app-sidebar-card [profile]="profile"></app-sidebar-card>
+    }
+  </div>
+  <div class="to-subscribers">
+    <a href="" class="to-subscribers-link medium-text">Все подписчики ></a>
+  </div>
+</div>
+
+<footer class="sidebar__footer">
+  @if (me(); as me) {
+  <!-- me -->
+  @if (me.avatarUrl) {
+  <img class="sidebar__footer-img" [src]="me.avatarUrl | imgUrl" alt="" />
+  } @else {
+  <img class="sidebar__footer-img" src="/assets/imgs/ava.png" alt="" />
+  }
+  <div class="medium-text username-text">
+    {{ me.username }}
+  </div>
+  }
+</footer>

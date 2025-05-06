@@ -40,3 +40,38 @@
   width: 16px;
   height: 16px;
 }
+
+.sidebar-card {
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.sidebar-card__subscribers {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.to-subscribers-link {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.sidebar__footer {
+  background-color: var(--dark-hover-color);
+  border-radius: 2px;
+  padding: 4px 16px;
+  display: grid;
+  grid-template-columns: 32px 1fr 16px;
+
+  .username-text {
+    color: var(--primary-color);
+  }
+}
+
+.sidebar__footer-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50px;
+}
