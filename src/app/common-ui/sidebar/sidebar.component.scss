@@ -1,6 +1,8 @@
 :host {
   display: block;
   padding: 20px 12px;
+  position: relative;
+  background: var(--dark-color);
 }
 
 .main-menu-list {
@@ -25,7 +27,8 @@
   width: 100%;
   text-align: left;
   border-radius: 2px;
-
+  text-decoration: none;
+  &.active,
   &:hover,
   &:focus {
     background-color: var(--dark-hover-color);
@@ -59,13 +62,19 @@
 }
 
 .sidebar__footer {
+  position: absolute;
+  bottom: 20px;
   background-color: var(--dark-hover-color);
   border-radius: 2px;
   padding: 4px 16px;
   display: grid;
   grid-template-columns: 32px 1fr 16px;
+  grid-gap: 12px;
+  align-items: center;
+  width: calc(100% - 20px);
 
   .username-text {
+    font-weight: 700;
     color: var(--primary-color);
   }
 }
@@ -74,4 +83,10 @@
   width: 32px;
   height: 32px;
   border-radius: 50px;
+}
+
+.settings-btn__svg {
+  width: 13px;
+  height: 13px;
+  color: var(--primary-color);
 }

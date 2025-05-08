@@ -5,10 +5,18 @@ import { ProfileService } from '../../data/services/profile.service';
 import { AsyncPipe } from '@angular/common';
 import { firstValueFrom } from 'rxjs';
 import { ImgUrlPipe } from '../../helpers/pipes/img-url.pipe';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [SvgIconComponent, SidebarCardComponent, AsyncPipe, ImgUrlPipe],
+  imports: [
+    RouterLinkActive,
+    SvgIconComponent,
+    SidebarCardComponent,
+    AsyncPipe,
+    ImgUrlPipe,
+    RouterLink,
+  ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
 })
@@ -23,17 +31,17 @@ export class SidebarComponent implements OnInit {
     {
       icon: 'home',
       label: 'Моя страница',
-      route: '/',
+      route: 'profile/me',
     },
     {
       icon: 'chats',
       label: 'Чаты',
-      route: '/',
+      route: 'chats',
     },
     {
       icon: 'search',
       label: 'Поиск',
-      route: '/',
+      route: 'search',
     },
   ];
 

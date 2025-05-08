@@ -4,10 +4,10 @@
   <ul class="main-menu-list">
     @for (item of menuItems; track $index) {
     <li>
-      <button class="menu-item">
+      <a [routerLink]="item.route" routerLinkActive="active" class="menu-item">
         <svg class="menu-item__svg" [icon]="item.icon"></svg>
         <span>{{ item.label }}</span>
-      </button>
+      </a>
     </li>
     }
   </ul>
@@ -21,20 +21,32 @@
     }
   </div>
   <div class="to-subscribers">
-    <a href="" class="to-subscribers-link medium-text">Все подписчики ></a>
+    <a routerLink="/" class="to-subscribers-link medium-text"
+      >Все подписчики ></a
+    >
   </div>
 </div>
 
 <footer class="sidebar__footer">
-  @if (me(); as me) {
-  <!-- me -->
-  @if (me.avatarUrl) {
-  <img class="sidebar__footer-img" [src]="me.avatarUrl | imgUrl" alt="" />
+  @if (me(); as me) { @if (me.avatarUrl) {
+  <img
+    class="sidebar__footer-img"
+    [src]="me.avatarUrl | imgUrl"
+    [alt]="me.username"
+  />
   } @else {
-  <img class="sidebar__footer-img" src="/assets/imgs/ava.png" alt="" />
+  <img
+    class="sidebar__footer-img"
+    src="/assets/imgs/ava.png"
+    [alt]="me.username"
+  />
   }
   <div class="medium-text username-text">
     {{ me.username }}
   </div>
+
+  <a routerLink="/settings/me" class="settings-btn">
+    <svg icon="settings" class="settings-btn__svg"></svg>
+  </a>
   }
 </footer>
