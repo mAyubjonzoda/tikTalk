@@ -1,12 +1,15 @@
 @import "fonts";
 @import "margins";
+
 :root {
   --dark-color: #000000;
   --light-color: #ffffff;
   --primary-color: #ae7aff;
   --gray-color: #5f646d;
   --dark-hover-color: #161616;
+  --message-color: #404040;
   --light-transparent-color: rgba(255, 255, 255, 0.75);
+  --light-border: 1px solid var(--light-color);
 }
 
 *,

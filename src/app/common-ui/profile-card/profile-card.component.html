@@ -27,7 +27,9 @@
     }
   </div>
   <div class="profile-card__action-btns">
-    <button class="btn">Подписаться</button>
+    <button class="btn" [routerLink]="['/profile', profile.id]">
+      Подписаться
+    </button>
   </div>
 </div>
 }

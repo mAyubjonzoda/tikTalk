@@ -1,0 +1,15 @@
+:host {
+  display: block;
+  border-right: var(--light-border);
+  background-color: var(--dark-color);
+}
+
+.chats-filters-input__wrapper {
+  padding: 16px 20px;
+  background: var(--dark-color);
+  border-bottom: var(--light-border);
+}
+.chats-item {
+  height: calc(100vh - 76px - 48px);
+  overflow-y: scroll;
+}
