@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   ElementRef,
   HostListener,
@@ -15,7 +16,7 @@ import { ProfileFiltersComponent } from './profile-filters/profile-filters.compo
   templateUrl: './search-page.component.html',
   styleUrl: './search-page.component.scss',
 })
-export class SearchPageComponent {
+export class SearchPageComponent implements AfterViewInit {
   profileService = inject(ProfileService);
   profiles = this.profileService.filteredProfile;
   constructor() {}

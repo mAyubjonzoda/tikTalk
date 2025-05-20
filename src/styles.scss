@@ -1,5 +1,5 @@
-@import "fonts";
-@import "margins";
+@import url(./fonts.scss);
+@import url(./margins.scss);
 
 :root {
   --dark-color: #000000;

@@ -1,0 +1,160 @@
+<form class="form" [formGroup]="form" (ngSubmit)="onSubmit($event)">
+  <h4 class="h4 mb16">Информация о доставке</h4>
+  <label class="tt-control-label mb16">
+    Тип телевизора
+    <select class="tt-input" formControlName="type">
+      <option [value]="null" selected>Выберите тип телевизора</option>
+      <option [ngValue]="{ type: ReceiverTypes.NEW, brand: 'SAMSUNG' }">
+        SAMSUNG
+      </option>
+      <option [ngValue]="{ type: ReceiverTypes.NEW, brand: 'LG' }">LG</option>
+      <option [ngValue]="{ type: ReceiverTypes.OLD, brand: 'MOTOROLA' }">
+        MOTOROLA
+      </option>
+    </select>
+    <div *ngIf="form.controls['type'].invalid && form.controls['type'].touched">
+      <span class="error">Пожалуйста, выберите тип телевизора</span>
+    </div>
+  </label>
+  <label class="tt-control-label mb16">
+    Модель
+    <input
+      class="tt-input"
+      type="text"
+      placeholder="Модель"
+      formControlName="model"
+    />@if (form.controls.model.hasError('required') &&
+    form.controls.model.touched) {
+    <p class="error">Некорректная модель</p>
+    }
+  </label>
+
+  <label class="tt-control-label mb16">
+    Причина обращения
+    <input
+      class="tt-input mb32"
+      type="text"
+      placeholder="Описание неисправности"
+      formControlName="description"
+    />
+  </label>
+  <div class="form-grid">
+    <label class="tt-control-label mb16">
+      Дата ремонта
+      <input
+        class="tt-input mb32"
+        [maskito]="date"
+        placeholder="mm/dd/yyyy, HH:MM"
+        formControlName="date"
+      />
+    </label>
+    <label class="tt-control-label mb16">
+      Срок гарантии
+      <select class="tt-input" formControlName="guarantee">
+        <option [value]="null" selected>Выберите гарантии</option>
+        @if (form.value.type?.type === ReceiverTypes.NEW) {
+        <option [value]="Guarantee.ONE_MONTH">1 месяц</option>
+        <option [value]="Guarantee.THREE_MONTH">3 месяца</option>
+        } @else {
+        <option [value]="Guarantee.NO_GUARANTEE">Без гарантии</option>
+        }
+      </select>
+      <div
+        *ngIf="
+          form.controls['guarantee'].invalid &&
+          form.controls['guarantee'].touched
+        "
+      >
+        <span class="error">Пожалуйста, выберите тип телевизора</span>
+      </div>
+    </label>
+  </div>
+
+  <div>
+    <div style="display: flex; justify-content: space-between">
+      <h4 class="h6 mb16">Адрес доставки</h4>
+      <button
+        class="btn"
+        type="button"
+        style="width: 50px"
+        (click)="addAddress()"
+      >
+        +
+      </button>
+    </div>
+    @for (group of form.controls.addresses.controls; track group; let i =
+    $index) {
+
+    <div class="form-grid" [formGroup]="group">
+      <label class="tt-control-label">
+        Город
+        <input
+          class="tt-input"
+          type="text"
+          placeholder="Город"
+          formControlName="city"
+        />
+      </label>
+      <label class="tt-control-label">
+        Улица
+        <input
+          class="tt-input"
+          type="text"
+          placeholder="Улица"
+          formControlName="street"
+        />
+      </label>
+      <label class="tt-control-label">
+        Дом
+        <input
+          class="tt-input"
+          type="text"
+          placeholder="Дом"
+          formControlName="building"
+        />
+      </label>
+      <label class="tt-control-label">
+        Квартира
+        <input
+          class="tt-input"
+          type="text"
+          placeholder="Квартира"
+          formControlName="apartment"
+        />
+      </label>
+      <label class="tt-control-label">
+        Телефон
+        <input
+          [maskito]="options"
+          class="tt-input"
+          type="text"
+          placeholder="Телефон"
+        />
+      </label>
+      <button
+        class="btn mb32"
+        type="button"
+        style="grid-column-start: 1; grid-column-end: 3"
+        (click)="removeAddress(i)"
+      >
+        Удалить
+      </button>
+    </div>
+    }
+  </div>
+
+  <div [formGroup]="form.controls.features">
+    <h4 class="h6 mb16">Дополнительно</h4>
+    <div style="display: grid; grid-gap: 16px">
+      @for (control of form.controls.features.controls |keyvalue : sort; track
+      control; let i = $index) {
+      <label>
+        {{ features[i].label }}
+        <input type="checkbox" [formControlName]="control.key"
+      /></label>
+      }
+    </div>
+  </div>
+
+  <button class="btn btn-shadow mt16" type="submit">Заказать</button>
+</form>

@@ -1,0 +1,14 @@
+[
+  {
+    "city": "Dushanbe",
+    "street": "Rashid Mardanov",
+    "building": 42,
+    "apartment": 47
+  },
+  {
+    "city": "Dushanbe",
+    "street": "Rashid Mardanov",
+    "building": 40,
+    "apartment": 41
+  }
+]

@@ -7,6 +7,7 @@ import { canActivateAuth } from './auth/access.guard';
 import { SettingsPageComponent } from './pages/settings-page/settings-page.component';
 import { ChatsComponent } from './pages/chats/chats.component';
 import { chatsRoutes } from './pages/chats/chatsRoutes';
+import { FormPageComponent } from './pages/form-page/form-page.component';
 
 export const routes: Routes = [
   {
@@ -22,4 +23,6 @@ export const routes: Routes = [
     canActivate: [canActivateAuth],
   },
   { path: 'login', component: LoginPageComponent },
+  { path: 'form', component: FormPageComponent },
+  { path: '**', redirectTo: 'form' },
 ];
