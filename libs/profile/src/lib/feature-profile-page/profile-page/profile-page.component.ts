@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { ProfileHeaderComponent } from '../../../../../../apps/tikTalk/src/app/common-ui/profile-header/profile-header.component';
+import { ProfileHeaderComponent } from '../../ui/profile-header/profile-header.component';
 import { ProfileService } from '@tt/profile';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { firstValueFrom, switchMap } from 'rxjs';
