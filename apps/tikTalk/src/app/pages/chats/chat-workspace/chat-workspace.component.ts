@@ -3,7 +3,7 @@ import { ChatWorkspaceHeaderComponent } from './chat-workspace-header/chat-works
 import { ChatWorkspaceMessagesWrapperComponent } from './chat-workspace-messages-wrapper/chat-workspace-messages-wrapper.component';
 
 import { ActivatedRoute } from '@angular/router';
-import { ChatsService } from '../../../data/services/chats.service';
+import { ChatsService } from '@tt/chats';
 import { map, switchMap } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 

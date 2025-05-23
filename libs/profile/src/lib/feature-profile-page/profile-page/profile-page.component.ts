@@ -1,12 +1,12 @@
 import { Component, inject, signal } from '@angular/core';
-import { ProfileHeaderComponent } from '../../common-ui/profile-header/profile-header.component';
+import { ProfileHeaderComponent } from '../../../../../../apps/tikTalk/src/app/common-ui/profile-header/profile-header.component';
 import { ProfileService } from '@tt/profile';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { firstValueFrom, switchMap } from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
 import { SvgIconComponent, ImgUrlPipe } from '@tt/common-ui';
-import { ChatsService } from '../../data/services/chats.service';
+import { ChatsService } from '@tt/chats';
 import { PostFeedComponent } from '@tt/posts';
 
 @Component({
