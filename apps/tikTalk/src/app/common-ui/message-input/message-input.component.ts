@@ -5,9 +5,9 @@ import {
   Output,
   Renderer2,
 } from '@angular/core';
-import { AvatarCircleComponent } from '../avatar-circle/avatar-circle.component';
-import { SvgIconComponent } from '../svg-icon/svg-icon.component';
-import { ProfileService } from '../../data/services/profile.service';
+
+import { SvgIconComponent, AvatarCircleComponent } from '@tt/common-ui';
+import { ProfileService } from '@tt/profile';
 import { FormsModule } from '@angular/forms';
 
 @Component({
