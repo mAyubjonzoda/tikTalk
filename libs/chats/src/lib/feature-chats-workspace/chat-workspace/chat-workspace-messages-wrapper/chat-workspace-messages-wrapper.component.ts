@@ -1,8 +1,7 @@
 import { Component, inject, input } from '@angular/core';
 import { ChatWorkspaceMessageComponent } from './chat-workspace-message/chat-workspace-message.component';
-import { MessageInputComponent } from '../../../../common-ui/message-input/message-input.component';
-import { ChatsService } from '@tt/chats';
-import { Chat, Message } from '@tt/chats';
+import { ChatsService, MessageInputComponent, Chat, Message } from '@tt/chats';
+
 import { firstValueFrom } from 'rxjs';
 
 @Component({

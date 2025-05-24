@@ -6,9 +6,11 @@ import {
   inject,
   Renderer2,
 } from '@angular/core';
-import { ProfileCardComponent } from '../../common-ui/profile-card/profile-card.component';
-import { ProfileService } from '@tt/profile';
-import { ProfileFiltersComponent } from './profile-filters/profile-filters.component';
+import {
+  ProfileService,
+  ProfileCardComponent,
+  ProfileFiltersComponent,
+} from '@tt/profile';
 
 @Component({
   selector: 'app-search-page',

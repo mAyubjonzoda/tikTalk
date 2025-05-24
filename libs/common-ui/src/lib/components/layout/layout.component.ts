@@ -1,6 +1,6 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { SidebarComponent } from '../sidebar/sidebar.component';
+import { SidebarComponent } from '../../../../../../apps/tikTalk/src/app/common-ui/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-layout',

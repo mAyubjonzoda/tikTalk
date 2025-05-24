@@ -1,9 +1,9 @@
 import { Component, effect, inject, ViewChild } from '@angular/core';
-import { ProfileHeaderComponent } from '../../common-ui/profile-header/profile-header.component';
+import { ProfileHeaderComponent } from '@tt/profile';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProfileService } from '@tt/profile';
 import { firstValueFrom, switchMap } from 'rxjs';
-import { AvatarUploadComponent } from './avatar-upload/avatar-upload.component';
+import { AvatarUploadComponent } from '@tt/profile';
 import { ActivatedRoute, Router } from '@angular/router';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
