@@ -12,8 +12,8 @@ import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { AvatarCircleComponent, SvgIconComponent } from '@tt/common-ui';
-import { PostService } from '@tt/posts';
 import { GlobalStoreService } from '@tt/shared';
+import { PostService } from '../../data';
 
 @Component({
   selector: 'app-post-input',

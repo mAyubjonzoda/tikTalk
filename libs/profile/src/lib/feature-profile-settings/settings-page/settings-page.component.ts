@@ -1,12 +1,11 @@
 import { Component, effect, inject, ViewChild } from '@angular/core';
-import { ProfileHeaderComponent } from '@tt/profile';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ProfileService } from '@tt/profile';
 import { firstValueFrom, switchMap } from 'rxjs';
-import { AvatarUploadComponent } from '@tt/profile';
 import { ActivatedRoute, Router } from '@angular/router';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
+import { AvatarUploadComponent, ProfileHeaderComponent } from '../../ui';
+import { ProfileService } from '../../data';
 
 @Component({
   selector: 'app-settings-page',
@@ -57,12 +56,13 @@ export class SettingsPageComponent {
       );
     }
 
-    // @ts-ignore
     firstValueFrom(
-      this.profileService.patchProfile(
-        //@ts-ignore{
-        { ...this.form.value, stack: this.splitStack(this.form.value.stack) }
-      )
+      //@ts-ignore
+      this.profileService.patchProfile({
+        //@ts-ignore
+        ...this.form.value,
+        stack: this.splitStack(this.form.value.stack),
+      })
     );
     setTimeout(() => {
       window.location.href = '/profile/me';

@@ -1,8 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
 import { ProfileHeaderComponent } from '../../ui/profile-header/profile-header.component';
-import { ProfileService } from '@tt/profile';
+import { ProfileService } from '../../data/services/profile.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { firstValueFrom, switchMap } from 'rxjs';
+import { switchMap } from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
 import { SvgIconComponent, ImgUrlPipe } from '@tt/common-ui';

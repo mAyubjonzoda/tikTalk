@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { Comment } from '@tt/posts';
+import { Comment } from '../../data';
 import { AvatarCircleComponent } from '@tt/common-ui';
 
 @Component({

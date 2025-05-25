@@ -6,11 +6,9 @@ import {
   inject,
   Renderer2,
 } from '@angular/core';
-import {
-  ProfileService,
-  ProfileCardComponent,
-  ProfileFiltersComponent,
-} from '@tt/profile';
+import { ProfileCardComponent } from '../../ui';
+import { ProfileFiltersComponent } from '../profile-filters/profile-filters.component';
+import { ProfileService } from '../../data';
 
 @Component({
   selector: 'app-search-page',
@@ -21,7 +19,6 @@ import {
 export class SearchPageComponent implements AfterViewInit {
   profileService = inject(ProfileService);
   profiles = this.profileService.filteredProfile;
-  constructor() {}
 
   r2 = inject(Renderer2);
 
