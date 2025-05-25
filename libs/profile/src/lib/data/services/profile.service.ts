@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 
-import { Pageble } from '@tt/shared';
+import { GlobalStoreService, Pageble } from '@tt/shared';
 import { map, tap } from 'rxjs';
-import { Profile } from '../interfaces/profile.interface';
+import { Profile } from '@tt/interfaces/profile';
 
 @Injectable({
   providedIn: 'root',
@@ -11,11 +11,11 @@ import { Profile } from '../interfaces/profile.interface';
 export class ProfileService {
   private http = inject(HttpClient);
   private url = 'https://icherniakov.ru/yt-course/';
+  private globalStoreService = inject(GlobalStoreService);
 
   me = signal<Profile | null>(null);
   filteredProfile = signal<Profile[]>([]);
 
-  constructor() {}
   getSubscribersShortList(num = 3) {
     return this.http
       .get<Pageble<Profile>>(`${this.url}account/subscribers/?page=1&size=50`)
@@ -31,9 +31,12 @@ export class ProfileService {
   }
 
   getMe() {
-    return this.http
-      .get<Profile>(`${this.url}account/me`)
-      .pipe(tap((res) => this.me.set(res)));
+    return this.http.get<Profile>(`${this.url}account/me`).pipe(
+      tap((res) => {
+        this.me.set(res);
+        this.globalStoreService.me.set(res);
+      })
+    );
   }
 
   patchProfile(data: Partial<Profile>) {

@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { LayoutComponent } from '@tt/common-ui';
+import { LayoutComponent } from '@tt/layout';
 import {
   ProfilePageComponent,
   SearchPageComponent,

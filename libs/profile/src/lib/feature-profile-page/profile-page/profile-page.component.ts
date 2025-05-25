@@ -6,7 +6,6 @@ import { firstValueFrom, switchMap } from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
 import { SvgIconComponent, ImgUrlPipe } from '@tt/common-ui';
-import { ChatsService } from '@tt/chats';
 import { PostFeedComponent } from '@tt/posts';
 
 @Component({
@@ -24,7 +23,6 @@ import { PostFeedComponent } from '@tt/posts';
 })
 export class ProfilePageComponent {
   profileService = inject(ProfileService);
-  chatsService = inject(ChatsService);
   route = inject(ActivatedRoute);
   router = inject(Router);
 
@@ -43,8 +41,6 @@ export class ProfilePageComponent {
   );
 
   async sendMessage(userId: number) {
-    firstValueFrom(this.chatsService.createChat(userId)).then((res) => {
-      this.router.navigate(['/chats', res.id]);
-    });
+    this.router.navigate(['/chats', 'new'], { queryParams: { userId } });
   }
 }
