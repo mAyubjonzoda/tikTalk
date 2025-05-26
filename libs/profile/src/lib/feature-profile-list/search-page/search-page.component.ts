@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { ProfileCardComponent } from '../../ui';
 import { ProfileFiltersComponent } from '../profile-filters/profile-filters.component';
-import { ProfileService } from '../../data';
+import { ProfileService } from '@tt/data-access';
 
 @Component({
   selector: 'app-search-page',

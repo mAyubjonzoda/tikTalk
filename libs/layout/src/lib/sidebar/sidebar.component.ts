@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { SvgIconComponent, ImgUrlPipe } from '@tt/common-ui';
 import { SidebarCardComponent } from './sidebar-card/sidebar-card.component';
-import { ProfileService } from '@tt/profile';
+import { ProfileService } from '@tt/data-access';
 import { AsyncPipe } from '@angular/common';
 import { firstValueFrom } from 'rxjs';
 

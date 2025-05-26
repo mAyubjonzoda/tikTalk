@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { PostInputComponent } from '../../ui/post-input/post-input.component';
 import { PostComponent } from '../post/post.component';
-import { PostService } from '../../data';
+import { PostService } from '@tt/data-access';
 import { firstValueFrom } from 'rxjs';
 
 @Component({

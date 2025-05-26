@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { AvatarCircleComponent, SvgIconComponent } from '@tt/common-ui';
 import { GlobalStoreService } from '@tt/shared';
-import { PostService } from '../../data';
+import { PostService } from '@tt/data-access';
 
 @Component({
   selector: 'app-post-input',

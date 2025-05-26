@@ -3,7 +3,8 @@ import { AvatarCircleComponent, SvgIconComponent } from '@tt/common-ui';
 
 import { firstValueFrom } from 'rxjs';
 import { CommentComponent, PostInputComponent } from '../../ui';
-import { Post, PostService, Comment } from '../../data';
+import { Post, Comment } from '@tt/interfaces/post';
+import { PostService } from '@tt/data-access';
 
 @Component({
   selector: 'app-post',

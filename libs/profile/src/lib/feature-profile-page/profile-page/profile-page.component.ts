@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { ProfileHeaderComponent } from '../../ui/profile-header/profile-header.component';
-import { ProfileService } from '../../data/services/profile.service';
+import { ProfileService } from '@tt/data-access';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
