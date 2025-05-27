@@ -7,6 +7,7 @@ import {
 } from '@tt/profile';
 import { canActivateAuth, LoginPageComponent } from '@tt/auth';
 import { chatsRoutes } from '@tt/chats';
+import { profileStore } from '@tt/profile';
 import { FormPageComponent } from './pages/form-page/form-page.component';
 import { provideStates } from '@ngxs/store';
 import { provideState } from '@ngrx/store';
@@ -23,6 +24,7 @@ export const routes: Routes = [
         path: 'search',
         component: SearchPageComponent,
         providers: [
+          profileStore,
           provideStates([ProfileStates]),
           // provideState(profileFeature),
           // provideEffects(ProfileEffects),

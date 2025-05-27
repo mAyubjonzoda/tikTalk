@@ -3,7 +3,7 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, filter, startWith, Subscription } from 'rxjs';
 import { ProfileService } from '@tt/data-access';
 import { Store } from '@ngxs/store';
-import { profileActions } from '../../data';
+import { profileActions, profileStore } from '../../data';
 import { FilterEvents } from '../../data/store/actions.ngxs';
 
 @Component({
@@ -16,7 +16,7 @@ export class ProfileFiltersComponent implements OnDestroy {
   fb = inject(FormBuilder);
   profileService = inject(ProfileService);
 
-  store = inject(Store);
+  store = inject(profileStore);
   searchFormSub!: Subscription;
 
   searchForm = this.fb.group({
@@ -29,7 +29,8 @@ export class ProfileFiltersComponent implements OnDestroy {
     this.searchFormSub = this.searchForm.valueChanges
       .pipe(startWith({}), debounceTime(500))
       .subscribe((formValue) => {
-        return this.store.dispatch(new FilterEvents(formValue));
+        // return this.store.dispatch(new FilterEvents(formValue));
+        return this.store.filterProfiles(formValue);
       });
   }
 
