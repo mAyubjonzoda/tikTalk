@@ -8,8 +8,8 @@ import {
 } from '@angular/core';
 import { ProfileCardComponent } from '../../ui';
 import { ProfileFiltersComponent } from '../profile-filters/profile-filters.component';
-import { Store } from '@ngrx/store';
-import { selectFilteredProfiles } from '../../data';
+import { Store } from '@ngxs/store';
+import { ProfileStates, selectFilteredProfiles } from '../../data';
 
 @Component({
   selector: 'app-search-page',
@@ -19,7 +19,7 @@ import { selectFilteredProfiles } from '../../data';
 })
 export class SearchPageComponent implements AfterViewInit {
   store = inject(Store);
-  profiles = this.store.selectSignal(selectFilteredProfiles);
+  profiles = this.store.selectSignal(ProfileStates.getProfiles);
 
   r2 = inject(Renderer2);
 
