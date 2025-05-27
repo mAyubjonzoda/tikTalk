@@ -14,7 +14,6 @@ export class ProfileService {
   private globalStoreService = inject(GlobalStoreService);
 
   me = signal<Profile | null>(null);
-  filteredProfile = signal<Profile[]>([]);
 
   getSubscribersShortList(num = 3) {
     return this.http
@@ -51,10 +50,8 @@ export class ProfileService {
   }
 
   filterProfiles(params: Record<string, any>) {
-    return this.http
-      .get<Pageble<Profile>>(`${this.url}account/accounts`, {
-        params,
-      })
-      .pipe(tap((res) => this.filteredProfile.set(res.items)));
+    return this.http.get<Pageble<Profile>>(`${this.url}account/accounts`, {
+      params,
+    });
   }
 }
