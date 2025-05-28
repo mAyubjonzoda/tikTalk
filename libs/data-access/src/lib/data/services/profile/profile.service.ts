@@ -4,11 +4,17 @@ import { inject, Injectable, signal } from '@angular/core';
 import { GlobalStoreService, Pageble } from '@tt/shared';
 import { map, tap } from 'rxjs';
 import { Profile } from '@tt/interfaces/profile';
+import { SignalStoreService } from './signal.store';
+
+interface ProfileState {
+  profiles: Profile[];
+  profileFilters: Record<string, any>;
+}
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProfileService {
+export class ProfileService extends SignalStoreService<ProfileState> {
   private http = inject(HttpClient);
   private url = 'https://icherniakov.ru/yt-course/';
   private globalStoreService = inject(GlobalStoreService);
@@ -50,8 +56,14 @@ export class ProfileService {
   }
 
   filterProfiles(params: Record<string, any>) {
-    return this.http.get<Pageble<Profile>>(`${this.url}account/accounts`, {
-      params,
-    });
+    return this.http
+      .get<Pageble<Profile>>(`${this.url}account/accounts`, {
+        params,
+      })
+      .pipe(
+        tap((res) => {
+          this.set('profiles', res.items);
+        })
+      );
   }
 }

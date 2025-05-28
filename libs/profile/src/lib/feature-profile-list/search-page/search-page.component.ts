@@ -14,6 +14,7 @@ import {
   profileStore,
   selectFilteredProfiles,
 } from '../../data';
+import { ProfileService } from '@tt/data-access';
 
 @Component({
   selector: 'app-search-page',
@@ -22,8 +23,10 @@ import {
   styleUrl: './search-page.component.scss',
 })
 export class SearchPageComponent implements AfterViewInit {
+  profileService = inject(ProfileService);
+
   store = inject(profileStore);
-  profiles = this.store.profiles2;
+  profiles = this.profileService.select('profiles');
 
   r2 = inject(Renderer2);
 
