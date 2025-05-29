@@ -11,6 +11,8 @@ import { FormPageComponent } from './pages/form-page/form-page.component';
 import { provideState } from '@ngrx/store';
 import { ProfileEffects, profileFeature } from '@tt/profile';
 import { provideEffects } from '@ngrx/effects';
+import { postReducer } from '../../../../libs/posts/src/lib/data/store/reducer';
+import { PostEffects } from '../../../../libs/posts/src/lib/data/store/effects';
 
 export const routes: Routes = [
   {
@@ -26,7 +28,14 @@ export const routes: Routes = [
           provideEffects(ProfileEffects),
         ],
       },
-      { path: 'profile/:id', component: ProfilePageComponent },
+      {
+        path: 'profile/:id',
+        component: ProfilePageComponent,
+        providers: [
+          provideState({ name: 'posts', reducer: postReducer }),
+          provideEffects(PostEffects),
+        ],
+      },
       { path: 'settings/:id', component: SettingsPageComponent },
       { path: 'chats', loadChildren: () => chatsRoutes },
     ],
