@@ -8,11 +8,12 @@ import {
   LastMessageRes,
   Message,
 } from '@tt/interfaces/chats';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { ProfileService } from '../profile/profile.service';
 import { ChatWSNativeService } from './chat-ws-native.service';
 import { AuthService } from '@tt/auth';
 import { isNewMessage } from '@tt/interfaces/chats/type.guard';
+import { ChatWSRxjsService } from './chat-ws-rxjs.service';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +23,7 @@ export class ChatsService {
   me = inject(ProfileService).me;
   auth = inject(AuthService);
 
-  wsAdapter: ChatWSService = new ChatWSNativeService();
+  wsAdapter: ChatWSService = new ChatWSRxjsService();
   activeChatMessages = signal<Message[]>([]);
 
   private url = 'https://icherniakov.ru/yt-course/';
@@ -30,11 +31,11 @@ export class ChatsService {
   private messagesUrl = `${this.url}message/`;
 
   connectWS() {
-    this.wsAdapter.connect({
+    return this.wsAdapter.connect({
       url: `${this.chatsUrl}ws`,
       token: this.auth.token ?? '',
       handleMessage: this.handleWSMessage,
-    });
+    }) as Observable<ChatWSMessage>;
   }
   handleWSMessage = (message: ChatWSMessage) => {
     if (!('action' in message)) return;

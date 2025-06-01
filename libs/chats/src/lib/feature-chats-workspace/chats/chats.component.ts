@@ -1,7 +1,8 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ChatListComponent } from '../chat-list/chat-list.component';
 import { ChatsService } from '@tt/data-access';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-chats',
@@ -9,9 +10,9 @@ import { ChatsService } from '@tt/data-access';
   templateUrl: './chats.component.html',
   styleUrl: './chats.component.scss',
 })
-export class ChatsComponent implements OnInit {
+export class ChatsComponent {
   chatService = inject(ChatsService);
-  ngOnInit() {
-    this.chatService.connectWS();
+  constructor() {
+    this.chatService.connectWS().pipe(takeUntilDestroyed()).subscribe();
   }
 }
