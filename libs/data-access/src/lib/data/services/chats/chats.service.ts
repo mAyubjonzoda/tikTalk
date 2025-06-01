@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import {
   Chat,
+  ChatWSMessage,
   ChatWSService,
+  isUnreadMessage,
   LastMessageRes,
   Message,
 } from '@tt/interfaces/chats';
@@ -10,6 +12,7 @@ import { map } from 'rxjs';
 import { ProfileService } from '../profile/profile.service';
 import { ChatWSNativeService } from './chat-ws-native.service';
 import { AuthService } from '@tt/auth';
+import { isNewMessage } from '@tt/interfaces/chats/type.guard';
 
 @Injectable({
   providedIn: 'root',
@@ -33,8 +36,12 @@ export class ChatsService {
       handleMessage: this.handleWSMessage,
     });
   }
-  handleWSMessage = (message: any) => {
-    if (message.action === 'message') {
+  handleWSMessage = (message: ChatWSMessage) => {
+    if (!('action' in message)) return;
+    if (isUnreadMessage(message)) {
+      //TODO
+    }
+    if (isNewMessage(message)) {
       this.activeChatMessages.set([
         ...this.activeChatMessages(),
         {

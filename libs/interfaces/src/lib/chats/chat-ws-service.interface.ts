@@ -1,7 +1,9 @@
+import { ChatWSMessage } from './chat-ws-message.interface';
+
 export interface ChatConnectionWSParams {
   url: string;
   token: string;
-  handleMessage: (message: any) => void;
+  handleMessage: (message: ChatWSMessage) => void;
 }
 export interface ChatWSService {
   connect(params: ChatConnectionWSParams): void;
