@@ -10,7 +10,6 @@ import {
 import { PostInputComponent } from '../../ui/post-input/post-input.component';
 import { PostComponent } from '../post/post.component';
 import { PostService } from '@tt/data-access';
-import { firstValueFrom } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { selectPosts } from '../../data/store/selectors';
 import { loadPosts } from '../../data/store/actions';
@@ -25,21 +24,16 @@ import { AsyncPipe } from '@angular/common';
 export class PostFeedComponent implements OnInit, AfterViewInit {
   postService = inject(PostService);
   r2 = inject(Renderer2);
+  hostElement = inject(ElementRef);
+  store = inject(Store);
 
   // feed = this.postService.posts;
-  store = inject(Store);
   feed = this.store.select(selectPosts);
 
   @HostListener('window:resize')
   onResize() {
     this.resizeFeed();
   }
-
-  hostElement = inject(ElementRef);
-  // constructor() {
-  //   // firstValueFrom(this.postService.fetchPosts());
-  //   this.store.dispatch(loadPosts());
-  // }
 
   ngOnInit(): void {
     this.store.dispatch(loadPosts());
@@ -52,5 +46,9 @@ export class PostFeedComponent implements OnInit, AfterViewInit {
     const { top } = this.hostElement.nativeElement.getBoundingClientRect();
     const height = window.innerHeight - top - 24 - 24;
     this.r2.setStyle(this.hostElement.nativeElement, 'height', `${height}px`);
+  }
+
+  onPostCreated() {
+    this.store.dispatch(loadPosts());
   }
 }

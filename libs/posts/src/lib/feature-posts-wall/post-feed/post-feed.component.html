@@ -1,4 +1,4 @@
-<app-post-input></app-post-input>
+<app-post-input (created)="onPostCreated()"></app-post-input>
 @for (post of feed | async ; track $index) {
 <app-post [post]="post"></app-post>
 }
