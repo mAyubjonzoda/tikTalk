@@ -10,7 +10,7 @@ import { ProfileCardComponent } from '../../ui';
 import { ProfileFiltersComponent } from '../profile-filters/profile-filters.component';
 import { Store } from '@ngrx/store';
 import { profileActions, selectFilteredProfiles } from '../../data';
-import { InfiniteScrollTriggerComponent } from '../../../../../common-ui/src/lib/components/ist/infinite-scroll-trigger.component';
+import { InfiniteScrollTriggerComponent } from '@tt/common-ui';
 
 @Component({
   selector: 'app-search-page',

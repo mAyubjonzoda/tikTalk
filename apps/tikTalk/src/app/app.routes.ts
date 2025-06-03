@@ -11,9 +11,7 @@ import { FormPageComponent } from './pages/form-page/form-page.component';
 import { provideState } from '@ngrx/store';
 import { ProfileEffects, profileFeature } from '@tt/profile';
 import { provideEffects } from '@ngrx/effects';
-import { postReducer } from '../../../../libs/posts/src/lib/data/store/reducer';
-import { PostEffects } from '../../../../libs/posts/src/lib/data/store/effects';
-
+import { postReducer, PostEffects } from '@tt/posts';
 export const routes: Routes = [
   {
     path: '',
