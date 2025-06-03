@@ -7,6 +7,11 @@
       <a [routerLink]="item.route" routerLinkActive="active" class="menu-item">
         <svg class="menu-item__svg" [icon]="item.icon"></svg>
         <span>{{ item.label }}</span>
+        @if (item.route === 'chats' && unreadCount() > 0) {
+        <div class="unreadCount">
+          {{ unreadCount() }}
+        </div>
+        }
       </a>
     </li>
     }

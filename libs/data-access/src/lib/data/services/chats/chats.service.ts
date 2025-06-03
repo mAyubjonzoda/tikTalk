@@ -24,6 +24,7 @@ export class ChatsService {
   auth = inject(AuthService);
 
   wsAdapter: ChatWSService = new ChatWSRxjsService();
+  unreadCount = signal<number>(0);
   activeChatMessages = signal<Message[]>([]);
 
   private url = 'https://icherniakov.ru/yt-course/';
@@ -41,6 +42,7 @@ export class ChatsService {
     if (!('action' in message)) return;
     if (isUnreadMessage(message)) {
       //TODO
+      this.unreadCount.set(message.data.count);
     }
     if (isNewMessage(message)) {
       this.activeChatMessages.set([
