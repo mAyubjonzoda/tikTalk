@@ -6,6 +6,7 @@ import { toObservable } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
 import { AvatarUploadComponent, ProfileHeaderComponent } from '../../ui';
 import { ProfileService } from '@tt/data-access';
+import { StackInputComponent } from '@tt/common-ui';
 
 @Component({
   selector: 'app-settings-page',
@@ -14,6 +15,7 @@ import { ProfileService } from '@tt/data-access';
     ReactiveFormsModule,
     AvatarUploadComponent,
     AsyncPipe,
+    StackInputComponent,
   ],
   templateUrl: './settings-page.component.html',
   styleUrl: './settings-page.component.scss',
@@ -21,8 +23,10 @@ import { ProfileService } from '@tt/data-access';
 export class SettingsPageComponent {
   fb = inject(FormBuilder);
   profileService = inject(ProfileService);
-
   router = inject(Router);
+  route = inject(ActivatedRoute);
+
+  me$ = toObservable(this.profileService.me);
 
   @ViewChild(AvatarUploadComponent) avatarUploader!: AvatarUploadComponent;
 
@@ -31,7 +35,6 @@ export class SettingsPageComponent {
       //@ts-ignore
       this.form.patchValue({
         ...this.profileService.me(),
-        stack: this.margeStack(this.profileService.me()?.stack),
       });
     });
   }
@@ -45,48 +48,26 @@ export class SettingsPageComponent {
     stack: [''],
   });
 
-  onSave() {
+  async onSave() {
     this.form.markAllAsTouched();
     this.form.updateValueAndValidity();
     if (this.form.invalid) return;
 
     if (this.avatarUploader.avatar) {
-      firstValueFrom(
+      await firstValueFrom(
         this.profileService.uploadAvatar(this.avatarUploader.avatar)
       );
     }
 
-    firstValueFrom(
+    await firstValueFrom(
       //@ts-ignore
       this.profileService.patchProfile({
-        //@ts-ignore
         ...this.form.value,
-        stack: this.splitStack(this.form.value.stack),
       })
     );
-    setTimeout(() => {
-      window.location.href = '/profile/me';
-    }, 1000);
+    firstValueFrom(this.profileService.getMe());
+    this.router.navigate(['/profile', 'me']);
   }
-
-  splitStack(stack: string | null | string[] | undefined): string[] {
-    if (!stack) return [];
-    if (Array.isArray(stack)) return stack;
-
-    return stack.split(',');
-  }
-
-  margeStack(stack: string | null | string[] | undefined) {
-    if (!stack) return '';
-    if (Array.isArray(stack)) return stack.join(',');
-
-    return stack;
-  }
-
-  //
-
-  route = inject(ActivatedRoute);
-  me$ = toObservable(this.profileService.me);
 
   profile$ = this.route.params.pipe(
     switchMap(({ id }) => {

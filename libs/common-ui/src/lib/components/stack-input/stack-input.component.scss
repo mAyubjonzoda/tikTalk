@@ -1,0 +1,31 @@
+.stack-control {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  background: var(--dark-color);
+  border-bottom: 1px solid var(--light-color);
+  padding: 12px 0;
+  gap: 12px;
+}
+
+.stack-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.stack-btr__delete {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.stack-ghost-input {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--light-color);
+  border: none;
+  background: none;
+  outline: none;
+}
