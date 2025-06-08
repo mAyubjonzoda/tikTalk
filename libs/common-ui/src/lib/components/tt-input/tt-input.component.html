@@ -1,0 +1,10 @@
+<label class="tt-control-label">
+  <ng-content></ng-content>
+  <input
+    [ngModel]="value"
+    (ngModelChange)="onModelChange($event)"
+    [type]="type()"
+    [placeholder]="placeholder()"
+    [ngClass]="inputClass()"
+  />
+</label>

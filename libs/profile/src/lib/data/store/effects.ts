@@ -22,8 +22,6 @@ export class ProfileEffects {
         this.store.select(selectProfilePageable)
       ),
       switchMap(([_, filters, pageable]) => {
-        console.log([_, filters, pageable]);
-
         return this.profileService.filterProfiles({
           ...pageable,
           ...filters,
