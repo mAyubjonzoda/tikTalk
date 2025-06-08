@@ -1,0 +1,22 @@
+:host {
+  position: relative;
+}
+
+.suggestions-dropdown {
+  width: 50%;
+  background: #5f646d;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.suggest-btn {
+  background: none;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--primary-color);
+  }
+}

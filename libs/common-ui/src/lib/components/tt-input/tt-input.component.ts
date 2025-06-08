@@ -28,6 +28,8 @@ export class TtInputComponent implements ControlValueAccessor {
   value: string | null = null;
 
   writeValue(obj: any): void {
+    this.value = obj;
+
     //
   }
   registerOnChange(fn: any): void {

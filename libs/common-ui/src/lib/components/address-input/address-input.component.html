@@ -1,0 +1,23 @@
+<tt-input
+  [formControl]="innerSearchControl"
+  inputClass="tt-form-input mt16 mb16"
+  placeholder="Введите данные"
+>
+  <span class="tt-form-label__text">Место работы</span>
+</tt-input>
+@if (suggestions$ | async; as suggestions) {
+<!-- // -->
+@if (isDropdownOpened()) {
+
+<div class="suggestions-dropdown">
+  <!-- // -->
+  @for (item of suggestions; track $index) {
+  <!-- // -->
+  @if(item !== null){
+
+  <button class="suggest-btn" (click)="onSuggestionClick(item)">
+    {{ item }}
+  </button>
+  } }
+</div>
+} }

@@ -6,7 +6,7 @@ import { toObservable } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
 import { AvatarUploadComponent, ProfileHeaderComponent } from '../../ui';
 import { ProfileService } from '@tt/data-access';
-import { StackInputComponent } from '@tt/common-ui';
+import { StackInputComponent, AddressInputComponent } from '@tt/common-ui';
 
 @Component({
   selector: 'app-settings-page',
@@ -16,6 +16,7 @@ import { StackInputComponent } from '@tt/common-ui';
     AvatarUploadComponent,
     AsyncPipe,
     StackInputComponent,
+    AddressInputComponent,
   ],
   templateUrl: './settings-page.component.html',
   styleUrl: './settings-page.component.scss',
